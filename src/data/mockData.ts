@@ -1,20 +1,72 @@
-// Mock Users
+// Usuarios de prueba
+//TODO DIFERENCIAR ROLES
 export const mockUsers = [
   {
     id: "1",
-    username: "usuario1",
+    username: "farana",
     password: "1234",
-    name: "Juan Pérez"
+    name: "Federico Arana",
+    is_admin: true
   },
   {
     id: "2",
-    username: "usuario2",
-    password: "5467",
-    name: "María González"
+    username: "mmiranda",
+    password: "1234",
+    name: "Melania Miranda",
+    is_admin: false
   }
 ];
 
-// Mock Cards
+
+// Cuentas bancarias de prueba
+export const mockAccounts = [
+  {
+    id: "acc1",
+    userId: "1",
+    type: "pesos",
+    name: "Caja de Ahorro en Pesos",
+    number: "10023456789",
+    cbu: "0123456789012345678901",
+    alias: "fede.arana.pesos",
+    balance: 75000.50,
+    currency: "ARS"
+  },
+  {
+    id: "acc2",
+    userId: "1",
+    type: "dolar",
+    name: "Caja de Ahorro en Dólares",
+    number: "20023456789",
+    cbu: "0123456789012345678902",
+    alias: "fede.arana.dolares",
+    balance: 2500.25,
+    currency: "USD"
+  },
+  {
+    id: "acc3",
+    userId: "1",
+    type: "corriente",
+    name: "Cuenta Corriente",
+    number: "30023456789",
+    cbu: "0123456789012345678903",
+    alias: "fede.arana.cc",
+    balance: 35000.75,
+    currency: "ARS"
+  },
+  {
+    id: "acc4",
+    userId: "2",
+    type: "pesos",
+    name: "Caja de Ahorro en Pesos",
+    number: "10087654321",
+    cbu: "0123456789012345678904",
+    alias: "melania.miranda.pesos",
+    balance: 125000.30,
+    currency: "ARS"
+  }
+];
+
+// Tarjetas bancarias de prueba
 export const mockCards = [
   {
     id: "card1",
@@ -50,57 +102,10 @@ export const mockCards = [
   }
 ];
 
-// Mock Accounts
-export const mockAccounts = [
-  {
-    id: "acc1",
-    userId: "1",
-    type: "savings_pesos",
-    name: "Caja de Ahorro en Pesos",
-    number: "10023456789",
-    cbu: "0123456789012345678901",
-    alias: "juan.perez.pesos",
-    balance: 75000.50,
-    currency: "ARS"
-  },
-  {
-    id: "acc2",
-    userId: "1",
-    type: "savings_dollars",
-    name: "Caja de Ahorro en Dólares",
-    number: "20023456789",
-    cbu: "0123456789012345678902",
-    alias: "juan.perez.dolares",
-    balance: 2500.25,
-    currency: "USD"
-  },
-  {
-    id: "acc3",
-    userId: "1",
-    type: "checking",
-    name: "Cuenta Corriente",
-    number: "30023456789",
-    cbu: "0123456789012345678903",
-    alias: "juan.perez.cc",
-    balance: 35000.75,
-    currency: "ARS"
-  },
-  {
-    id: "acc4",
-    userId: "2",
-    type: "savings_pesos",
-    name: "Caja de Ahorro en Pesos",
-    number: "10087654321",
-    cbu: "0123456789012345678904",
-    alias: "maria.gonzalez.pesos",
-    balance: 125000.30,
-    currency: "ARS"
-  }
-];
 
-// Mock Transactions
+// Movimientos de prueba asociados a TC y Cuentas
 export const mockTransactions = [
-  // Card transactions
+  // Movimientos de tc
   {
     id: "trx1",
     entityId: "card1", // Card ID
@@ -138,7 +143,7 @@ export const mockTransactions = [
     type: "debit"
   },
   
-  // Account transactions
+  // Movimientos de cuenta
   {
     id: "trx5",
     entityId: "acc1",
@@ -174,28 +179,64 @@ export const mockTransactions = [
     description: "Transferencia enviada",
     amount: 12000,
     type: "debit"
+  },
+  {
+    id: "trx9",
+    entityId: "acc1",
+    entityType: "account",
+    date: "2025-05-02",
+    description: "Transferencia recibida de Melania Miranda",
+    amount: 100000,
+    type: "credit"
+  },
+  {
+    id: "trx10",
+    entityId: "acc1",
+    entityType: "account",
+    date: "2025-05-02",
+    description: "Transferencia enviada a Melania Miranda",
+    amount: 50000,
+    type: "debit",
   }
 ];
 
 // Helper functions
+//Filtra todas las TC por id de usuario
 export const getCardsByUserId = (userId: string) => {
   return mockCards.filter(card => card.userId === userId);
 };
 
+//Filtra todas las cuentas por id de usuario
 export const getAccountsByUserId = (userId: string) => {
   return mockAccounts.filter(account => account.userId === userId);
 };
 
+//Filtra todos movimientos por si es cuenta o TC
 export const getTransactionsByEntityId = (entityId: string, entityType: 'card' | 'account') => {
   return mockTransactions.filter(
     transaction => transaction.entityId === entityId && transaction.entityType === entityType
   );
 };
 
+//Filtra todas las tarjetas dado un ID de TC
 export const getCardById = (cardId: string) => {
   return mockCards.find(card => card.id === cardId);
 };
 
+//Filtra todas las cuentas dado un ID de cuenta
 export const getAccountById = (accountId: string) => {
   return mockAccounts.find(account => account.id === accountId);
 };
+
+//Obtiene el balance de la cuenta dado sus movimientos
+export const getBalanceAccount = (accountId: string) => {
+
+  return getTransactionsByEntityId(accountId, 'account').reduce((balance, transaction) => {
+    if (transaction.type === 'debit') {
+      return balance - transaction.amount;
+    } else {
+      return balance + transaction.amount;
+    }
+  }, 0);
+};
+

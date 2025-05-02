@@ -1,6 +1,7 @@
 import React from 'react';
 import { Landmark } from 'lucide-react';
 import '../styles/components/AccountItem.scss';
+import { getBalanceAccount } from '../data/mockData';
 
 interface AccountProps {
   account: {
@@ -28,9 +29,9 @@ const AccountItem: React.FC<AccountProps> = ({ account, onClick }) => {
       <div className="account-header">
         {getAccountTypeIcon()}
         <span className="account-type">
-          {account.type === 'savings_pesos' 
+          {account.type === 'pesos' 
             ? 'Caja de Ahorro $' 
-            : account.type === 'savings_dollars' 
+            : account.type === 'dolar' 
               ? 'Caja de Ahorro US$' 
               : 'Cuenta Corriente'}
         </span>
@@ -42,7 +43,7 @@ const AccountItem: React.FC<AccountProps> = ({ account, onClick }) => {
         
         <div className="account-balance">
           <span className="balance-label">Saldo</span>
-          <span className="balance-value">{currencySymbol} {account.balance.toLocaleString()}</span>
+          <span className="balance-value">{currencySymbol} { getBalanceAccount(account.id).toLocaleString()}</span>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAccountById, getTransactionsByEntityId } from '../data/mockData';
+import { getAccountById, getBalanceAccount, getTransactionsByEntityId } from '../data/mockData';
 import Header from '../components/Header';
 import TransactionList from '../components/TransactionList';
 import { DollarSign, Hash, AtSign } from 'lucide-react';
@@ -28,11 +28,11 @@ const AccountDetailPage: React.FC = () => {
   // Helper function to get account type in Spanish
   const getAccountTypeLabel = (type: string) => {
     switch (type) {
-      case 'savings_pesos':
+      case 'pesos':
         return 'Caja de Ahorro en Pesos';
-      case 'savings_dollars':
+      case 'dolar':
         return 'Caja de Ahorro en Dólares';
-      case 'checking':
+      case 'corriente':
         return 'Cuenta Corriente';
       default:
         return 'Cuenta';
@@ -53,7 +53,7 @@ const AccountDetailPage: React.FC = () => {
             </div>
             <div className="account-number">N°: {account.number}</div>
             <div className="account-balance">
-              {currencySymbol} {account.balance.toLocaleString()}
+              {currencySymbol} { getBalanceAccount(account.id).toLocaleString()}
             </div>
           </div>
         </div>

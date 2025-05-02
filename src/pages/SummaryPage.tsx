@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Header from '../components/Header';
-import { getCardsByUserId, getAccountsByUserId, getTransactionsByEntityId } from '../data/mockData';
+import { getCardsByUserId, getAccountsByUserId, getTransactionsByEntityId, getBalanceAccount } from '../data/mockData';
 import { FileText, Download, Calendar, ArrowDown, ArrowUp } from 'lucide-react';
 import '../styles/pages/SummaryPage.scss';
 
@@ -154,7 +154,7 @@ const SummaryPage: React.FC = () => {
                     <span>{account.name}</span>
                     <span>
                       {account.currency === 'USD' ? 'US$' : '$'} 
-                      {account.balance.toLocaleString()}
+                      {  getBalanceAccount(account.id).toLocaleString()}
                     </span>
                   </li>
                 ))}
