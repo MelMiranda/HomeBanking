@@ -1,0 +1,198 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.summary-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+  display: flex;
+  flex-direction: column;
+  
+  .summary-container {
+    flex: 1;
+    padding: variables.$spacing-md;
+    animation: fadeIn variables.$transition-default forwards;
+    
+    .summary-header {
+      margin-bottom: variables.$spacing-lg;
+      
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: variables.$spacing-xs;
+        color: variables.$color-gray-900;
+      }
+      
+      p {
+        color: variables.$color-gray-600;
+        margin-bottom: 0;
+      }
+    }
+    
+    .summary-period {
+      background-color: variables.$color-white;
+      border-radius: variables.$border-radius-md;
+      padding: variables.$spacing-md;
+      margin-bottom: variables.$spacing-md;
+      
+      .period-label {
+        display: flex;
+        align-items: center;
+        margin-bottom: variables.$spacing-sm;
+        color: variables.$color-gray-700;
+        font-size: 0.875rem;
+        
+        svg {
+          margin-right: variables.$spacing-xs;
+        }
+      }
+      
+      .period-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: variables.$spacing-sm;
+        
+        button {
+          background-color: variables.$color-gray-100;
+          border-radius: variables.$border-radius-md;
+          padding: variables.$spacing-xs variables.$spacing-md;
+          font-size: 0.875rem;
+          color: variables.$color-gray-700;
+           transition: all variables.$transition-fast;
+          
+          &:hover {
+            background-color: variables.$color-gray-200;
+          }
+          
+          &.active {
+            background-color: variables.$color-primary;
+            color: variables.$color-white;
+          }
+        }
+      }
+    }
+    
+    .summary-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: variables.$spacing-md;
+      margin-bottom: variables.$spacing-lg;
+      
+      .overview-card {
+        background-color: variables.$color-white;
+        border-radius: variables.$border-radius-md;
+        padding: variables.$spacing-md;
+        display: flex;
+        align-items: center;
+        animation: fadeIn variables.$transition-default forwards;
+        
+        &.income {
+          border-left: 4px solid variables.$color-success;
+          
+          .overview-icon {
+            background-color: rgba(variables.$color-success, 0.1);
+            color: variables.$color-success;
+          }
+        }
+        
+        &.expenses {
+          border-left: 4px solid variables.$color-error;
+          
+          .overview-icon {
+            background-color: rgba(variables.$color-error, 0.1);
+            color: variables.$color-error;
+          }
+        }
+        
+        .overview-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: variables.$border-radius-full;
+          margin-right: variables.$spacing-md;
+        }
+        
+        .overview-content {
+          .overview-label {
+            font-size: 0.75rem;
+            color: variables.$color-gray-600;
+            display: block;
+          }
+          
+          .overview-value {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: variables.$color-gray-900;
+          }
+        }
+      }
+    }
+    
+    .summary-details {
+      background-color: variables.$color-white;
+      border-radius: variables.$border-radius-md;
+      padding: variables.$spacing-lg;
+      margin-bottom: variables.$spacing-lg;
+      animation: fadeIn variables.$transition-default forwards;
+      animation-delay: 100ms;
+      
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: variables.$spacing-sm;
+        color: variables.$color-gray-800;
+      }
+      
+      p {
+        color: variables.$color-gray-600;
+        font-size: 0.875rem;
+        margin-bottom: variables.$spacing-md;
+      }
+      
+      .card-accounts-summary {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: variables.$spacing-lg;
+        
+        @media (min-width: variables.$breakpoint-md) {
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        .summary-section {
+          h4 {
+            font-size: 1rem;
+            margin-bottom: variables.$spacing-sm;
+            color: variables.$color-gray-800;
+            padding-bottom: variables.$spacing-xs;
+            border-bottom: 1px solid variables.$color-gray-200;
+          }
+          
+          ul {
+            li {
+              display: flex;
+              justify-content: space-between;
+              padding: variables.$spacing-sm 0;
+              border-bottom: 1px dashed variables.$color-gray-200;
+              font-size: 0.875rem;
+              
+              &:last-child {
+                border-bottom: none;
+              }
+              
+              span:last-child {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .summary-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn variables.$transition-default forwards;
+      animation-delay: 200ms;
+    }
+  }
+}

@@ -1,0 +1,161 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.detail-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+  display: flex;
+  flex-direction: column;
+  
+  .detail-header {
+    padding: variables.$spacing-md;
+    
+    .detail-card, .detail-account {
+      background: linear-gradient(135deg, variables.$color-primary, variables.$color-primary-light);
+      color: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: variables.$spacing-lg;
+      box-shadow: variables.$shadow-md;
+      animation: fadeIn variables.$transition-default forwards;
+      
+      .card-type, .account-type {
+        display: flex;
+        align-items: center;
+        font-size: 0.875rem;
+        margin-bottom: variables.$spacing-md;
+        
+        svg {
+          margin-right: variables.$spacing-xs;
+        }
+      }
+      
+      .card-number, .account-number {
+        font-size: 1.25rem;
+        margin-bottom: variables.$spacing-md;
+        letter-spacing: 1px;
+      }
+      
+      .card-name, .account-type {
+        font-weight: 600;
+        font-size: 1.125rem;
+        margin-bottom: variables.$spacing-sm;
+      }
+      
+      .card-expiry {
+        font-size: 0.75rem;
+        opacity: 0.8;
+      }
+      
+      .account-balance {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: variables.$spacing-md;
+      }
+    }
+    
+    // Card type specific styling
+    .detail-card {
+      &.credit {
+        background: linear-gradient(135deg, variables.$color-credit, darken(variables.$color-credit, 15%));
+      }
+      
+      &.debit {
+        background: linear-gradient(135deg, variables.$color-debit, darken(variables.$color-debit, 15%));
+      }
+    }
+    
+    // Account type specific styling
+    .detail-account {
+      &.savings_pesos {
+        background: linear-gradient(135deg, variables.$color-savings-pesos, darken(variables.$color-savings-pesos, 15%));
+      }
+      
+      &.savings_dollars {
+        background: linear-gradient(135deg, variables.$color-savings-dollars, darken(variables.$color-savings-dollars, 15%));
+      }
+      
+      &.checking {
+        background: linear-gradient(135deg, variables.$color-checking, darken(variables.$color-checking, 15%));
+      }
+    }
+  }
+  
+  .detail-info {
+    padding: variables.$spacing-md;
+    background-color: variables.$color-white;
+    border-radius: variables.$border-radius-md;
+    margin: 0 variables.$spacing-md variables.$spacing-md;
+    animation: fadeIn variables.$transition-default forwards;
+    animation-delay: 100ms;
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: variables.$spacing-sm 0;
+      border-bottom: 1px solid variables.$color-gray-200;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      svg {
+        color: variables.$color-gray-600;
+        margin-right: variables.$spacing-md;
+      }
+      
+      .info-content {
+        flex: 1;
+        
+        .info-label {
+          font-size: 0.75rem;
+          color: variables.$color-gray-600;
+          display: block;
+        }
+        
+        .info-value {
+          font-weight: 500;
+          color: variables.$color-gray-900;
+        }
+      }
+    }
+  }
+  
+  .detail-transactions {
+    flex: 1;
+    padding: 0 variables.$spacing-md variables.$spacing-md;
+    animation: fadeIn variables.$transition-default forwards;
+    animation-delay: 200ms;
+    
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: variables.$spacing-md;
+      color: variables.$color-gray-800;
+    }
+  }
+  
+  .detail-error {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: variables.$spacing-xl;
+    
+    p {
+      margin-bottom: variables.$spacing-md;
+      color: variables.$color-gray-700;
+    }
+    
+    button {
+      background-color: variables.$color-primary;
+      color: variables.$color-white;
+      padding: variables.$spacing-sm variables.$spacing-lg;
+      border-radius: variables.$border-radius-md;
+      font-weight: 500;
+      
+      &:hover {
+        background-color: variables.$color-primary-dark;
+      }
+    }
+  }
+}

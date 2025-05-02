@@ -1,0 +1,86 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.account-item {
+  background-color: variables.$color-white;
+  border-radius: variables.$border-radius-md;
+  padding: variables.$spacing-md;
+  margin-bottom: variables.$spacing-md;
+  box-shadow: variables.$shadow-sm;
+  cursor: pointer;
+   transition: all variables.$transition-fast;
+  border-left: 4px solid variables.$color-gray-300;
+  animation: fadeIn variables.$transition-default forwards;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: variables.$shadow-md;
+  }
+  
+  &.savings_pesos {
+    border-left-color: variables.$color-savings-pesos;
+    
+    .account-header {
+      color: variables.$color-savings-pesos;
+    }
+  }
+  
+  &.savings_dollars {
+    border-left-color: variables.$color-savings-dollars;
+    
+    .account-header {
+      color: variables.$color-savings-dollars;
+    }
+  }
+  
+  &.checking {
+    border-left-color: variables.$color-checking;
+    
+    .account-header {
+      color: variables.$color-checking;
+    }
+  }
+  
+  .account-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$spacing-sm;
+    
+    svg {
+      margin-right: variables.$spacing-xs;
+    }
+    
+    .account-type {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+  
+  .account-content {
+    .account-name {
+      font-weight: 600;
+      margin-bottom: variables.$spacing-xs;
+      color: variables.$color-gray-900;
+    }
+    
+    .account-number {
+      font-size: 0.875rem;
+      color: variables.$color-gray-600;
+      margin-bottom: variables.$spacing-sm;
+    }
+    
+    .account-balance {
+      .balance-label {
+        font-size: 0.75rem;
+        color: variables.$color-gray-600;
+        display: block;
+      }
+      
+      .balance-value {
+        font-weight: 600;
+        font-size: 1.125rem;
+        color: variables.$color-gray-900;
+      }
+    }
+  }
+}

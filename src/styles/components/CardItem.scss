@@ -1,0 +1,82 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.card-item {
+  background-color: variables.$color-white;
+  border-radius: variables.$border-radius-md;
+  padding: variables.$spacing-md;
+  margin-bottom: variables.$spacing-md;
+  box-shadow: variables.$shadow-sm;
+  cursor: pointer;
+   transition: all variables.$transition-fast;
+  border-left: 4px solid variables.$color-gray-300;
+  animation: fadeIn variables.$transition-default forwards;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: variables.$shadow-md;
+  }
+  
+  &.credit {
+    border-left-color: variables.$color-credit;
+    
+    .card-header {
+      color: variables.$color-credit;
+    }
+  }
+  
+  &.debit {
+    border-left-color: variables.$color-debit;
+    
+    .card-header {
+      color: variables.$color-debit;
+    }
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$spacing-sm;
+    
+    svg {
+      margin-right: variables.$spacing-xs;
+    }
+    
+    .card-type {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+  
+  .card-content {
+    .card-name {
+      font-weight: 600;
+      margin-bottom: variables.$spacing-xs;
+      color: variables.$color-gray-900;
+    }
+    
+    .card-number {
+      font-size: 0.875rem;
+      color: variables.$color-gray-600;
+      margin-bottom: variables.$spacing-sm;
+    }
+    
+    .card-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      
+      .card-detail {
+        .detail-label {
+          font-size: 0.75rem;
+          color: variables.$color-gray-600;
+          display: block;
+        }
+        
+        .detail-value {
+          font-weight: 500;
+          color: variables.$color-gray-900;
+        }
+      }
+    }
+  }
+}

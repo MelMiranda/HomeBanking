@@ -1,0 +1,37 @@
+@use '../base/variables';
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: variables.$color-white;
+  padding: variables.$spacing-md;
+  box-shadow: variables.$shadow-sm;
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    
+    .header-logo {
+      display: flex;
+      align-items: center;
+      
+      svg {
+        color: variables.$color-primary;
+        margin-right: variables.$spacing-xs;
+      }
+      
+      h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+        color: variables.$color-gray-900;
+      }
+    }
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+  }
+}

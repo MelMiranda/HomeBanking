@@ -1,0 +1,250 @@
+@use '../base/variables';
+
+// Base button
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: variables.$spacing-sm variables.$spacing-lg;
+  border-radius: variables.$border-radius-md;
+  font-weight: 500;
+   transition: all variables.$transition-fast;
+  cursor: pointer;
+  white-space: nowrap;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(variables.$color-primary, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  svg {
+    margin-right: variables.$spacing-xs;
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: 6px variables.$spacing-md;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: variables.$spacing-md variables.$spacing-xl;
+  font-size: 1.125rem;
+}
+
+// Button variants
+.btn-primary {
+  background-color: variables.$color-primary;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-primary-dark;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-primary-dark, 5%);
+  }
+}
+
+.btn-secondary {
+  background-color: variables.$color-secondary;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-secondary-dark;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-secondary-dark, 5%);
+  }
+}
+
+.btn-accent {
+  background-color: variables.$color-accent;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-accent-dark;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-accent-dark, 5%);
+  }
+}
+
+.btn-success {
+  background-color: variables.$color-success;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: darken(variables.$color-success, 10%);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-success, 15%);
+  }
+}
+
+.btn-warning {
+  background-color: variables.$color-warning;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: darken(variables.$color-warning, 10%);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-warning, 15%);
+  }
+}
+
+.btn-error {
+  background-color: variables.$color-error;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: darken(variables.$color-error, 10%);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: darken(variables.$color-error, 15%);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid variables.$color-primary;
+  color: variables.$color-primary;
+  
+  &:hover:not(:disabled) {
+    background-color: rgba(variables.$color-primary, 0.05);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: rgba(variables.$color-primary, 0.1);
+  }
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: variables.$color-primary;
+  
+  &:hover:not(:disabled) {
+    background-color: rgba(variables.$color-primary, 0.05);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: rgba(variables.$color-primary, 0.1);
+  }
+}
+
+// Specific buttons
+.login-button {
+  @extend .btn;
+  @extend .btn-primary;
+  width: 100%;
+  padding: variables.$spacing-md;
+  font-weight: 600;
+  margin-top: variables.$spacing-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .loading-spinner {
+    margin-right: variables.$spacing-sm;
+  }
+}
+
+.back-button {
+  background: transparent;
+  color: variables.$color-gray-700;
+  border-radius: variables.$border-radius-full;
+  padding: variables.$spacing-xs;
+  
+  &:hover {
+    background: variables.$color-gray-200;
+    color: variables.$color-gray-900;
+  }
+}
+
+.logout-button {
+  background: transparent;
+  color: variables.$color-gray-700;
+  border-radius: variables.$border-radius-full;
+  padding: variables.$spacing-xs;
+  
+  &:hover {
+    background: variables.$color-gray-200;
+    color: variables.$color-gray-900;
+  }
+}
+
+.summary-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: variables.$color-primary;
+  color: variables.$color-white;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  border-radius: variables.$border-radius-md;
+  width: 100%;
+  font-weight: 500;
+  transition: background-color variables.$transition-fast;
+  
+  .summary-button-content {
+    display: flex;
+    align-items: center;
+    
+    svg {
+      margin-right: variables.$spacing-sm;
+    }
+  }
+  
+  &:hover {
+    background-color: variables.$color-primary-dark;
+  }
+}
+
+.generate-button, .download-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  font-weight: 500;
+  border-radius: variables.$border-radius-md;
+   transition: all variables.$transition-fast;
+  svg {
+    margin-right: variables.$spacing-sm;
+  }
+}
+
+.generate-button {
+  background-color: variables.$color-primary;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-primary-dark;
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.download-button {
+  background-color: variables.$color-white;
+  color: variables.$color-primary;
+  border: 1px solid variables.$color-primary;
+  margin-top: variables.$spacing-md;
+  
+  &:hover {
+    background-color: rgba(variables.$color-primary, 0.05);
+  }
+}

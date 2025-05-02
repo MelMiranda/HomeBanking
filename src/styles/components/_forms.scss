@@ -1,0 +1,189 @@
+@use '../base/variables';
+
+// Form group
+.form-group {
+  margin-bottom: variables.$spacing-lg;
+  
+  label {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: variables.$color-gray-700;
+    margin-bottom: variables.$spacing-xs;
+    
+    svg {
+      margin-right: variables.$spacing-xs;
+    }
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: variables.$spacing-md;
+    border: 1px solid variables.$color-gray-300;
+    border-radius: variables.$border-radius-md;
+    background-color: variables.$color-white;
+    color: variables.$color-gray-800;
+     transition: all variables.$transition-fast;
+    
+    &::placeholder {
+      color: variables.$color-gray-500;
+    }
+    
+    &:focus {
+      border-color: variables.$color-primary;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(variables.$color-primary, 0.1);
+    }
+    
+    &:disabled {
+      background-color: variables.$color-gray-100;
+      cursor: not-allowed;
+    }
+    
+    &.error {
+      border-color: variables.$color-error;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(variables.$color-error, 0.1);
+      }
+    }
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .helper-text {
+    font-size: 0.75rem;
+    margin-top: variables.$spacing-xs;
+    
+    &.error {
+      color: variables.$color-error;
+    }
+  }
+}
+
+// Custom checkboxes and radios
+.custom-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: variables.$spacing-sm;
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    
+    & + label {
+      position: relative;
+      padding-left: 28px;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 20px;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid variables.$color-gray-400;
+        background: variables.$color-white;
+         transition: all variables.$transition-fast;
+      }
+      
+      &:after {
+        content: '';
+        position: absolute;
+        opacity: 0;
+         transition: all variables.$transition-fast;
+      }
+    }
+    
+    &:focus + label:before {
+      border-color: variables.$color-primary;
+    }
+    
+    &:checked + label:before {
+      background: variables.$color-primary;
+      border-color: variables.$color-primary;
+    }
+  }
+  
+  // Checkbox specific
+  input[type="checkbox"] {
+    & + label:before {
+      border-radius: variables.$border-radius-sm;
+    }
+    
+    & + label:after {
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid variables.$color-white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+  
+  // Radio specific
+  input[type="radio"] {
+    & + label:before {
+      border-radius: 50%;
+    }
+    
+    & + label:after {
+      left: 4px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: variables.$color-white;
+    }
+    
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+// Form validation
+.login-error {
+  padding: variables.$spacing-sm;
+  margin-bottom: variables.$spacing-md;
+  border-radius: variables.$border-radius-md;
+  background-color: rgba(variables.$color-error, 0.1);
+  color: variables.$color-error;
+  font-size: 0.875rem;
+}
+
+// Login form specific
+.login-form {
+  h2 {
+    text-align: center;
+    margin-bottom: variables.$spacing-xl;
+    color: variables.$color-gray-900;
+  }
+  
+  .login-help {
+    margin-top: variables.$spacing-md;
+    text-align: center;
+    font-size: 0.875rem;
+    
+    a {
+      color: variables.$color-primary;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

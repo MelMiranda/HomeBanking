@@ -1,0 +1,94 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.transaction-list {
+  .transaction-group {
+    margin-bottom: variables.$spacing-lg;
+    animation: fadeIn variables.$transition-default forwards;
+    
+    .transaction-date {
+      font-size: 0.875rem;
+      color: variables.$color-gray-600;
+      margin-bottom: variables.$spacing-sm;
+      text-transform: capitalize;
+    }
+    
+    .transaction-item {
+      display: flex;
+      align-items: center;
+      background-color: variables.$color-white;
+      border-radius: variables.$border-radius-md;
+      padding: variables.$spacing-md;
+      margin-bottom: variables.$spacing-sm;
+       transition: all variables.$transition-fast;
+      
+      &:hover {
+        background-color: variables.$color-gray-500;
+      }
+      
+      .transaction-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: variables.$border-radius-full;
+        margin-right: variables.$spacing-md;
+        
+        svg {
+          stroke-width: 2;
+        }
+      }
+      
+      &.credit {
+        .transaction-icon {
+          background-color: rgba(variables.$color-transaction-credit, 0.1);
+          color: variables.$color-transaction-credit;
+        }
+        
+        .amount {
+          color: variables.$color-transaction-credit;
+        }
+      }
+      
+      &.debit {
+        .transaction-icon {
+          background-color: rgba(variables.$color-transaction-debit, 0.1);
+          color: variables.$color-transaction-debit;
+        }
+        
+        .amount {
+          color: variables.$color-transaction-debit;
+        }
+      }
+      
+      .transaction-content {
+        flex: 1;
+        
+        .transaction-description {
+          font-weight: 500;
+          color: variables.$color-gray-900;
+          margin-bottom: 2px;
+        }
+        
+        .transaction-type {
+          font-size: 0.75rem;
+          color: variables.$color-gray-600;
+        }
+      }
+      
+      .transaction-amount {
+        font-weight: 600;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.empty-transactions {
+  background-color: variables.$color-white;
+  padding: variables.$spacing-lg;
+  border-radius: variables.$border-radius-md;
+  text-align: center;
+  color: variables.$color-gray-600;
+}
