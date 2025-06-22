@@ -32,6 +32,7 @@
       border-radius: variables.$border-radius-md;
       padding: variables.$spacing-md;
       margin-bottom: variables.$spacing-md;
+      box-shadow: variables.$shadow-sm;
       
       .period-label {
         display: flex;
@@ -56,15 +57,18 @@
           padding: variables.$spacing-xs variables.$spacing-md;
           font-size: 0.875rem;
           color: variables.$color-gray-700;
-           transition: all variables.$transition-fast;
+          transition: all variables.$transition-fast;
+          border: 1px solid transparent;
           
           &:hover {
             background-color: variables.$color-gray-200;
+            border-color: variables.$color-gray-300;
           }
           
           &.active {
             background-color: variables.$color-primary;
             color: variables.$color-white;
+            border-color: variables.$color-primary;
           }
         }
       }
@@ -72,9 +76,13 @@
     
     .summary-overview {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: variables.$spacing-md;
       margin-bottom: variables.$spacing-lg;
+      
+      @media (min-width: variables.$breakpoint-md) {
+        grid-template-columns: repeat(3, 1fr);
+      }
       
       .overview-card {
         background-color: variables.$color-white;
@@ -83,6 +91,13 @@
         display: flex;
         align-items: center;
         animation: fadeIn variables.$transition-default forwards;
+        box-shadow: variables.$shadow-sm;
+        transition: transform variables.$transition-fast;
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-md;
+        }
         
         &.income {
           border-left: 4px solid variables.$color-success;
@@ -102,6 +117,25 @@
           }
         }
         
+        &.balance {
+          border-left: 4px solid variables.$color-primary;
+          
+          .overview-icon {
+            background-color: rgba(variables.$color-primary, 0.1);
+            color: variables.$color-primary;
+          }
+          
+          .overview-value {
+            &.positive {
+              color: variables.$color-success;
+            }
+            
+            &.negative {
+              color: variables.$color-error;
+            }
+          }
+        }
+        
         .overview-icon {
           display: flex;
           align-items: center;
@@ -117,6 +151,7 @@
             font-size: 0.75rem;
             color: variables.$color-gray-600;
             display: block;
+            margin-bottom: variables.$spacing-xs;
           }
           
           .overview-value {
@@ -135,6 +170,7 @@
       margin-bottom: variables.$spacing-lg;
       animation: fadeIn variables.$transition-default forwards;
       animation-delay: 100ms;
+      box-shadow: variables.$shadow-sm;
       
       h3 {
         font-size: 1.25rem;
@@ -186,6 +222,111 @@
         }
       }
     }
+
+    .recent-transactions {
+      background-color: variables.$color-white;
+      border-radius: variables.$border-radius-md;
+      padding: variables.$spacing-lg;
+      margin-bottom: variables.$spacing-lg;
+      animation: fadeIn variables.$transition-default forwards;
+      animation-delay: 150ms;
+      box-shadow: variables.$shadow-sm;
+      
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: variables.$spacing-md;
+        color: variables.$color-gray-800;
+      }
+      
+      .transactions-list {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$spacing-sm;
+        
+        .transaction-item {
+          display: flex;
+          align-items: center;
+          padding: variables.$spacing-md;
+          border-radius: variables.$border-radius-md;
+          background-color: variables.$color-gray-100;
+          transition: background-color variables.$transition-fast;
+          
+          &:hover {
+            background-color: variables.$color-gray-100;
+          }
+          
+          &.debit {
+            border-left: 3px solid variables.$color-error;
+            
+            .transaction-icon {
+              background-color: rgba(variables.$color-error, 0.1);
+              color: variables.$color-error;
+            }
+            
+            .amount {
+              color: variables.$color-error;
+            }
+          }
+          
+          &.credit {
+            border-left: 3px solid variables.$color-success;
+            
+            .transaction-icon {
+              background-color: rgba(variables.$color-success, 0.1);
+              color: variables.$color-success;
+            }
+            
+            .amount {
+              color: variables.$color-success;
+            }
+          }
+          
+          .transaction-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: variables.$border-radius-full;
+            margin-right: variables.$spacing-md;
+          }
+          
+          .transaction-details {
+            flex: 1;
+            
+            .transaction-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              margin-bottom: variables.$spacing-xs;
+              
+              h4 {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: variables.$color-gray-800;
+                margin: 0;
+              }
+              
+              .amount {
+                font-weight: 600;
+                font-size: 0.875rem;
+              }
+            }
+            
+            .transaction-date {
+              display: flex;
+              align-items: center;
+              color: variables.$color-gray-600;
+              font-size: 0.75rem;
+              
+              svg {
+                margin-right: variables.$spacing-xs;
+              }
+            }
+          }
+        }
+      }
+    }
     
     .summary-actions {
       display: flex;
@@ -193,6 +334,50 @@
       align-items: center;
       animation: fadeIn variables.$transition-default forwards;
       animation-delay: 200ms;
+      
+      .generate-button {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-sm;
+        background: linear-gradient(135deg, variables.$color-primary, variables.$color-primary-dark);
+        color: variables.$color-white;
+        border: none;
+        border-radius: variables.$border-radius-md;
+        padding: variables.$spacing-md variables.$spacing-xl;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all variables.$transition-fast;
+        box-shadow: variables.$shadow-md;
+        min-width: 200px;
+        justify-content: center;
+        
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-lg;
+          background: linear-gradient(135deg, variables.$color-primary-dark, variables.$color-primary);
+        }
+        
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+        
+        .loading-spinner {
+          width: 16px;
+          height: 16px;
+          border: 2px solid transparent;
+          border-top: 2px solid variables.$color-white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
     }
   }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

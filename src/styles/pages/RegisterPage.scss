@@ -1,0 +1,170 @@
+@use '../base/variables';
+
+.register-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  .register-container {
+    background: variables.$color-white;
+    border-radius: variables.$border-radius-xl;
+    padding: 3rem;
+    box-shadow: variables.$shadow-xl;
+    width: 100%;
+    max-width: 450px;
+    animation: fadeIn variables.$transition-default forwards;
+
+    .register-header {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: variables.$spacing-sm;
+        margin-bottom: variables.$spacing-lg;
+
+        svg {
+          color: variables.$color-primary;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: variables.$color-gray-900;
+          margin: 0;
+        }
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        color: variables.$color-gray-900;
+        margin-bottom: variables.$spacing-xs;
+      }
+
+      p {
+        color: variables.$color-gray-600;
+        margin: 0;
+      }
+    }
+
+    .register-form {
+      .error-message {
+        background: #fee2e2;
+        color: #991b1b;
+        padding: variables.$spacing-md;
+        border-radius: variables.$border-radius-md;
+        margin-bottom: variables.$spacing-lg;
+        font-size: 0.875rem;
+        border: 1px solid #fca5a5;
+      }
+
+      .form-group {
+        margin-bottom: variables.$spacing-lg;
+
+        label {
+          display: block;
+          margin-bottom: variables.$spacing-xs;
+          color: variables.$color-gray-700;
+          font-weight: 600;
+          font-size: 0.875rem;
+        }
+
+        input {
+          width: 100%;
+          padding: variables.$spacing-md;
+          border: 2px solid variables.$color-gray-200;
+          border-radius: variables.$border-radius-md;
+          font-size: 1rem;
+          transition: all variables.$transition-fast;
+          box-sizing: border-box;
+
+          &:focus {
+            outline: none;
+            border-color: variables.$color-primary;
+            box-shadow: 0 0 0 3px rgba(9, 80, 166, 0.1);
+          }
+
+          &::placeholder {
+            color: variables.$color-gray-400;
+          }
+        }
+      }
+
+      .register-button {
+        width: 100%;
+        background: linear-gradient(135deg, variables.$color-primary 0%, variables.$color-primary-dark 100%);
+        color: variables.$color-white;
+        border: none;
+        padding: variables.$spacing-md;
+        border-radius: variables.$border-radius-md;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all variables.$transition-fast;
+        margin-top: variables.$spacing-md;
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 20px rgba(9, 80, 166, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+      }
+    }
+
+    .register-footer {
+      text-align: center;
+      margin-top: variables.$spacing-xl;
+      padding-top: variables.$spacing-lg;
+      border-top: 1px solid variables.$color-gray-200;
+
+      p {
+        color: variables.$color-gray-600;
+        margin: 0;
+        font-size: 0.875rem;
+      }
+
+      .login-link {
+        color: variables.$color-primary;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color variables.$transition-fast;
+
+        &:hover {
+          color: variables.$color-primary-dark;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .register-page {
+    padding: 1rem;
+
+    .register-container {
+      padding: 2rem;
+
+      .register-header {
+        .logo h1 {
+          font-size: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+} 

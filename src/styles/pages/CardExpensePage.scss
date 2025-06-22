@@ -1,0 +1,293 @@
+@use '../base/variables';
+
+.card-expense-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+
+  .card-expense-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .expense-header {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      h1 {
+        font-size: 2rem;
+        color: variables.$color-gray-900;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: variables.$color-gray-600;
+        font-size: 1.1rem;
+      }
+    }
+
+    .error-message,
+    .success-message {
+      display: flex;
+      align-items: center;
+      gap: variables.$spacing-sm;
+      padding: variables.$spacing-md;
+      border-radius: variables.$border-radius-md;
+      margin-bottom: variables.$spacing-lg;
+      font-weight: 500;
+
+      &.error-message {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+
+      &.success-message {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+      }
+    }
+
+    .expense-form {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 2rem;
+      box-shadow: variables.$shadow-sm;
+      margin-bottom: 2rem;
+
+      .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid variables.$color-gray-200;
+
+        &:last-of-type {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        h3 {
+          color: variables.$color-gray-900;
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+        }
+
+        .form-group {
+          margin-bottom: 1rem;
+
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: variables.$color-gray-700;
+            font-weight: 600;
+            font-size: 0.875rem;
+          }
+
+          select,
+          input {
+            width: 100%;
+            padding: variables.$spacing-md;
+            border: 2px solid variables.$color-gray-200;
+            border-radius: variables.$border-radius-md;
+            font-size: 1rem;
+            transition: all variables.$transition-fast;
+            box-sizing: border-box;
+
+            &:focus {
+              outline: none;
+              border-color: variables.$color-primary;
+              box-shadow: 0 0 0 3px rgba(9, 80, 166, 0.1);
+            }
+
+            &:disabled {
+              background-color: variables.$color-gray-100;
+              cursor: not-allowed;
+            }
+          }
+
+          .input-with-icon {
+            position: relative;
+
+            svg {
+              position: absolute;
+              left: variables.$spacing-md;
+              top: 50%;
+              transform: translateY(-50%);
+              color: variables.$color-gray-400;
+              z-index: 1;
+            }
+
+            input {
+              padding-left: 2.5rem;
+            }
+          }
+        }
+
+        .form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: variables.$spacing-md;
+
+          @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+
+      .form-actions {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid variables.$color-gray-200;
+
+        .submit-button {
+          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+          color: variables.$color-white;
+          border: none;
+          padding: variables.$spacing-md variables.$spacing-xl;
+          border-radius: variables.$border-radius-md;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all variables.$transition-fast;
+          display: inline-flex;
+          align-items: center;
+          gap: variables.$spacing-sm;
+          min-width: 200px;
+          justify-content: center;
+
+          &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+          }
+
+          .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid variables.$color-white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+        }
+      }
+    }
+
+    .cards-info {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 2rem;
+      box-shadow: variables.$shadow-sm;
+
+      h3 {
+        color: variables.$color-gray-900;
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: variables.$spacing-md;
+
+        .card-info-item {
+          display: flex;
+          align-items: flex-start;
+          gap: variables.$spacing-md;
+          padding: variables.$spacing-md;
+          border: 1px solid variables.$color-gray-200;
+          border-radius: variables.$border-radius-md;
+          transition: all variables.$transition-fast;
+
+          &:hover {
+            border-color: variables.$color-primary;
+            box-shadow: variables.$shadow-sm;
+          }
+
+          .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, variables.$color-primary 0%, variables.$color-primary-dark 100%);
+            color: variables.$color-white;
+            border-radius: variables.$border-radius-md;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+
+          .card-details {
+            flex: 1;
+            min-width: 0;
+
+            h4 {
+              color: variables.$color-gray-900;
+              font-size: 1rem;
+              font-weight: 600;
+              margin-bottom: 0.5rem;
+            }
+
+            p {
+              color: variables.$color-gray-600;
+              font-size: 0.875rem;
+              margin-bottom: 0.25rem;
+
+              strong {
+                color: variables.$color-gray-900;
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .card-expense-page {
+    .card-expense-content {
+      padding: 1rem;
+
+      .expense-header {
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+
+      .expense-form {
+        padding: 1.5rem;
+
+        .form-actions {
+          .submit-button {
+            width: 100%;
+            min-width: auto;
+          }
+        }
+      }
+
+      .cards-info {
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+} 

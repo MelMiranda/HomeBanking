@@ -11,6 +11,22 @@
   .header-left {
     display: flex;
     align-items: center;
+    gap: variables.$spacing-sm;
+    
+    .back-button {
+      background: none;
+      border: none;
+      color: variables.$color-gray-600;
+      cursor: pointer;
+      padding: variables.$spacing-xs;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: variables.$color-gray-100;
+        color: variables.$color-primary;
+      }
+    }
     
     .header-logo {
       display: flex;
@@ -33,5 +49,43 @@
   .header-actions {
     display: flex;
     align-items: center;
+    gap: variables.$spacing-sm;
+    
+    .admin-button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: variables.$spacing-sm;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+    }
+    
+    .logout-button {
+      background: none;
+      border: 2px solid variables.$color-red-500;
+      color: variables.$color-red-500;
+      cursor: pointer;
+      padding: variables.$spacing-sm;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        background-color: variables.$color-red-500;
+        color: white;
+        transform: translateY(-1px);
+      }
+    }
   }
 }

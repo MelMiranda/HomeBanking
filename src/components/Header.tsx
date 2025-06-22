@@ -1,7 +1,7 @@
+import { ChevronLeft, CreditCard, LogOut, Settings } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CreditCard, LogOut, ChevronLeft } from 'lucide-react';
 import '../styles/components/Header.scss';
 
 interface HeaderProps {
@@ -11,7 +11,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, backButton, onBack }) => {
-  const { logout } = useAuth();
+  const { logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   
   const handleLogout = () => {
@@ -25,6 +25,10 @@ const Header: React.FC<HeaderProps> = ({ title, backButton, onBack }) => {
     } else {
       navigate(-1);
     }
+  };
+
+  const handleAdminClick = () => {
+    navigate('/admin');
   };
 
   return (
@@ -43,6 +47,11 @@ const Header: React.FC<HeaderProps> = ({ title, backButton, onBack }) => {
       </div>
       
       <div className="header-actions">
+        {isAdmin() && (
+          <button className="admin-button" onClick={handleAdminClick} title="Panel de Administración">
+            <Settings size={20} />
+          </button>
+        )}
         <button className="logout-button" onClick={handleLogout}>
           <LogOut size={20} />
         </button>

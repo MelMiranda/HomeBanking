@@ -1,0 +1,341 @@
+@use '../base/variables';
+
+.transfer-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+
+  .transfer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .transfer-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+
+      h1 {
+        font-size: 2rem;
+        color: variables.$color-gray-900;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: variables.$color-gray-600;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .history-button {
+        background: linear-gradient(135deg, variables.$color-primary 0%, variables.$color-primary-dark 100%);
+        color: variables.$color-white;
+        border: none;
+        padding: variables.$spacing-sm variables.$spacing-md;
+        border-radius: variables.$border-radius-md;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all variables.$transition-fast;
+        display: inline-flex;
+        align-items: center;
+        gap: variables.$spacing-xs;
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(9, 80, 166, 0.3);
+        }
+      }
+    }
+
+    .error-message,
+    .success-message {
+      display: flex;
+      align-items: center;
+      gap: variables.$spacing-sm;
+      padding: variables.$spacing-md;
+      border-radius: variables.$border-radius-md;
+      margin-bottom: variables.$spacing-lg;
+      font-weight: 500;
+
+      &.error-message {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+
+      &.success-message {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+      }
+    }
+
+    .transfer-form {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 2rem;
+      box-shadow: variables.$shadow-sm;
+      margin-bottom: 2rem;
+
+      .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid variables.$color-gray-200;
+
+        &:last-of-type {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        h3 {
+          color: variables.$color-gray-900;
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+        }
+
+        .form-group {
+          margin-bottom: 1rem;
+
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: variables.$color-gray-700;
+            font-weight: 600;
+            font-size: 0.875rem;
+          }
+
+          select,
+          input {
+            width: 100%;
+            padding: variables.$spacing-md;
+            border: 2px solid variables.$color-gray-200;
+            border-radius: variables.$border-radius-md;
+            font-size: 1rem;
+            transition: all variables.$transition-fast;
+            box-sizing: border-box;
+
+            &:focus {
+              outline: none;
+              border-color: variables.$color-primary;
+              box-shadow: 0 0 0 3px rgba(9, 80, 166, 0.1);
+            }
+
+            &:disabled {
+              background-color: variables.$color-gray-100;
+              cursor: not-allowed;
+            }
+          }
+        }
+
+        .search-container {
+          .search-type {
+            margin-bottom: 1rem;
+
+            select {
+              width: 200px;
+            }
+          }
+
+          .search-input {
+            display: flex;
+            gap: variables.$spacing-sm;
+
+            input {
+              flex: 1;
+            }
+
+            .search-btn {
+              background: linear-gradient(135deg, variables.$color-primary 0%, variables.$color-primary-dark 100%);
+              color: variables.$color-white;
+              border: none;
+              padding: variables.$spacing-md;
+              border-radius: variables.$border-radius-md;
+              cursor: pointer;
+              transition: all variables.$transition-fast;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-width: 50px;
+
+              &:hover:not(:disabled) {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 20px rgba(9, 80, 166, 0.3);
+              }
+
+              &:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+                transform: none;
+              }
+            }
+          }
+        }
+
+        .search-result {
+          margin-top: 1rem;
+          padding: variables.$spacing-md;
+          background: #f8f9fa;
+          border-radius: variables.$border-radius-md;
+          border: 1px solid variables.$color-gray-200;
+
+          .account-info {
+            h4 {
+              color: variables.$color-gray-900;
+              margin-bottom: 0.75rem;
+              font-size: 1rem;
+            }
+
+            p {
+              color: variables.$color-gray-700;
+              margin-bottom: 0.25rem;
+              font-size: 0.875rem;
+
+              strong {
+                color: variables.$color-gray-900;
+              }
+            }
+          }
+        }
+
+        .form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: variables.$spacing-md;
+
+          @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+
+      .transfer-actions {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid variables.$color-gray-200;
+
+        .transfer-button {
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          color: variables.$color-white;
+          border: none;
+          padding: variables.$spacing-md variables.$spacing-xl;
+          border-radius: variables.$border-radius-md;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all variables.$transition-fast;
+          display: inline-flex;
+          align-items: center;
+          gap: variables.$spacing-sm;
+          min-width: 250px;
+          justify-content: center;
+
+          &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+          }
+
+          .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid variables.$color-white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+        }
+      }
+    }
+
+    .transfer-info {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 2rem;
+      box-shadow: variables.$shadow-sm;
+
+      h3 {
+        color: variables.$color-gray-900;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          color: variables.$color-gray-700;
+          margin-bottom: 0.75rem;
+          padding-left: 1.5rem;
+          position: relative;
+          font-size: 0.875rem;
+
+          &:before {
+            content: "•";
+            color: variables.$color-primary;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .transfer-page {
+    .transfer-content {
+      padding: 1rem;
+
+      .transfer-header {
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+
+      .transfer-form {
+        padding: 1.5rem;
+
+        .form-section {
+          .search-container {
+            .search-input {
+              flex-direction: column;
+
+              .search-btn {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .transfer-actions {
+          .transfer-button {
+            width: 100%;
+            min-width: auto;
+          }
+        }
+      }
+    }
+  }
+} 

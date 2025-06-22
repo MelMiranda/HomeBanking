@@ -1,0 +1,281 @@
+@use '../base/variables';
+
+.data-management-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+
+  .access-denied {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: variables.$color-white;
+    border-radius: variables.$border-radius-lg;
+    text-align: center;
+    box-shadow: variables.$shadow-lg;
+
+    h2 {
+      color: variables.$color-error;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: variables.$color-gray-600;
+    }
+  }
+
+  .data-management-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+
+      h1 {
+        font-size: 2.5rem;
+        color: variables.$color-gray-900;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: variables.$color-gray-600;
+        font-size: 1.1rem;
+      }
+    }
+
+    .message {
+      padding: 1rem;
+      border-radius: variables.$border-radius-md;
+      margin-bottom: 2rem;
+      font-weight: 500;
+
+      &.success {
+        background-color: #d1fae5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+      }
+
+      &.error {
+        background-color: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: variables.$spacing-md;
+      margin-bottom: 3rem;
+
+      .stat-card {
+        background: variables.$color-white;
+        border-radius: variables.$border-radius-md;
+        padding: variables.$spacing-lg;
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-md;
+        box-shadow: variables.$shadow-sm;
+        transition: all variables.$transition-fast;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-md;
+        }
+
+        svg {
+          color: variables.$color-primary;
+          flex-shrink: 0;
+        }
+
+        .stat-info {
+          h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: variables.$color-gray-900;
+            margin: 0 0 variables.$spacing-xs 0;
+          }
+
+          p {
+            color: variables.$color-gray-600;
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: variables.$spacing-lg;
+      margin-bottom: 3rem;
+
+      .action-card {
+        background: variables.$color-white;
+        border-radius: variables.$border-radius-lg;
+        padding: variables.$spacing-xl;
+        box-shadow: variables.$shadow-sm;
+        transition: all variables.$transition-fast;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: variables.$shadow-lg;
+        }
+
+        .action-header {
+          display: flex;
+          align-items: center;
+          gap: variables.$spacing-md;
+          margin-bottom: variables.$spacing-md;
+
+          svg {
+            color: variables.$color-primary;
+          }
+
+          h3 {
+            color: variables.$color-gray-900;
+            margin: 0;
+            font-size: 1.25rem;
+          }
+        }
+
+        p {
+          color: variables.$color-gray-600;
+          margin-bottom: variables.$spacing-lg;
+          line-height: 1.6;
+        }
+
+        textarea {
+          width: 100%;
+          padding: variables.$spacing-md;
+          border: 2px solid variables.$color-gray-200;
+          border-radius: variables.$border-radius-md;
+          font-family: 'Courier New', monospace;
+          font-size: 0.875rem;
+          resize: vertical;
+          margin-bottom: variables.$spacing-md;
+          transition: border-color variables.$transition-fast;
+
+          &:focus {
+            outline: none;
+            border-color: variables.$color-primary;
+          }
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          gap: variables.$spacing-sm;
+          padding: variables.$spacing-md variables.$spacing-lg;
+          border: none;
+          border-radius: variables.$border-radius-md;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all variables.$transition-fast;
+          width: 100%;
+
+          &.export-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            }
+          }
+
+          &.import-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            }
+          }
+
+          &.reset-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+            }
+          }
+        }
+      }
+    }
+
+    .info-section {
+      .info-card {
+        background: variables.$color-white;
+        border-radius: variables.$border-radius-lg;
+        padding: variables.$spacing-xl;
+        display: flex;
+        align-items: flex-start;
+        gap: variables.$spacing-md;
+        box-shadow: variables.$shadow-sm;
+
+        svg {
+          color: variables.$color-primary;
+          flex-shrink: 0;
+          margin-top: 0.25rem;
+        }
+
+        h4 {
+          color: variables.$color-gray-900;
+          margin: 0 0 variables.$spacing-sm 0;
+          font-size: 1.1rem;
+        }
+
+        p {
+          color: variables.$color-gray-600;
+          margin: 0;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .data-management-page {
+    .data-management-content {
+      padding: 1rem;
+
+      .page-header {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: variables.$spacing-sm;
+
+        .stat-card {
+          padding: variables.$spacing-md;
+
+          .stat-info {
+            h3 {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+
+      .actions-grid {
+        grid-template-columns: 1fr;
+        gap: variables.$spacing-md;
+
+        .action-card {
+          padding: variables.$spacing-lg;
+        }
+      }
+    }
+  }
+} 

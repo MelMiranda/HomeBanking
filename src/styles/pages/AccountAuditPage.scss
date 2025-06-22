@@ -1,0 +1,467 @@
+@use '../base/variables';
+@use '../base/animations';
+
+.audit-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+  display: flex;
+  flex-direction: column;
+
+  .loading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: variables.$color-gray-600;
+    font-size: 1.1rem;
+  }
+
+  .error {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: variables.$color-gray-600;
+    font-size: 1.1rem;
+    
+    button {
+      margin-top: variables.$spacing-md;
+      background: variables.$color-primary;
+      color: variables.$color-white;
+      border: none;
+      padding: variables.$spacing-sm variables.$spacing-md;
+      border-radius: variables.$border-radius-md;
+      cursor: pointer;
+      transition: background-color variables.$transition-fast;
+      
+      &:hover {
+        background: variables.$color-primary-dark;
+      }
+    }
+  }
+  
+  .audit-container {
+    flex: 1;
+    padding: variables.$spacing-md;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    .audit-header {
+      background: linear-gradient(135deg, variables.$color-primary-light 0%, variables.$color-primary-light 100%);
+      color: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: variables.$spacing-xl;
+      margin-bottom: variables.$spacing-lg;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: variables.$shadow-md;
+      flex-wrap: wrap;
+      gap: variables.$spacing-lg;
+
+      .account-info {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-lg;
+        flex: 1;
+
+        .account-icon {
+          width: 64px;
+          height: 64px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: variables.$border-radius-md;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .account-details {
+          h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: variables.$spacing-sm;
+          }
+
+          .account-number {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: variables.$spacing-sm;
+            letter-spacing: 1px;
+          }
+
+          .account-balance {
+            font-size: 2rem;
+            font-weight: 700;
+            opacity: 0.95;
+          }
+        }
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-md;
+        background: rgba(255, 255, 255, 0.1);
+        padding: variables.$spacing-md;
+        border-radius: variables.$border-radius-md;
+
+        .user-icon {
+          width: 40px;
+          height: 40px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: variables.$border-radius-full;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .user-details {
+          h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: variables.$spacing-xs;
+          }
+
+          p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-bottom: variables.$spacing-xs;
+          }
+
+          .user-type {
+            font-size: 0.75rem;
+            padding: variables.$spacing-xs variables.$spacing-sm;
+            border-radius: variables.$border-radius-sm;
+            font-weight: 500;
+
+            &.admin {
+              background: rgba(239, 68, 68, 0.2);
+              color: #fecaca;
+            }
+
+            &.user {
+              background: rgba(34, 197, 94, 0.2);
+              color: #bbf7d0;
+            }
+          }
+        }
+      }
+    }
+
+    .audit-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: variables.$spacing-md;
+      margin-bottom: variables.$spacing-lg;
+
+      .stat-card {
+        background: variables.$color-white;
+        border-radius: variables.$border-radius-lg;
+        padding: variables.$spacing-lg;
+        box-shadow: variables.$shadow-sm;
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-md;
+        transition: transform variables.$transition-fast;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-md;
+        }
+
+        .stat-icon {
+          width: 48px;
+          height: 48px;
+          background: variables.$color-gray-100;
+          border-radius: variables.$border-radius-md;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          color: variables.$color-primary;
+        }
+
+        .stat-content {
+          flex: 1;
+
+          h3 {
+            color: variables.$color-gray-600;
+            font-size: 0.875rem;
+            margin-bottom: variables.$spacing-xs;
+            font-weight: 500;
+          }
+
+          p {
+            color: variables.$color-gray-900;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+
+            &.credit {
+              color: variables.$color-success;
+            }
+
+            &.debit {
+              color: variables.$color-error;
+            }
+          }
+        }
+      }
+    }
+
+    .account-details-section {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: variables.$spacing-lg;
+      margin-bottom: variables.$spacing-lg;
+      box-shadow: variables.$shadow-sm;
+
+      h2 {
+        font-size: 1.25rem;
+        margin-bottom: variables.$spacing-md;
+        color: variables.$color-gray-800;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: variables.$spacing-md;
+
+        .detail-item {
+          display: flex;
+          align-items: center;
+          gap: variables.$spacing-md;
+          padding: variables.$spacing-md;
+          background: variables.$color-gray-100;
+          border-radius: variables.$border-radius-md;
+
+          .detail-content {
+            flex: 1;
+
+            .detail-label {
+              display: block;
+              color: variables.$color-gray-600;
+              font-size: 0.875rem;
+              margin-bottom: variables.$spacing-xs;
+            }
+
+            .detail-value {
+              display: block;
+              color: variables.$color-gray-900;
+              font-size: 1rem;
+              font-weight: 500;
+              font-family: 'Courier New', monospace;
+            }
+          }
+        }
+      }
+    }
+
+    .filters-section {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: variables.$spacing-lg;
+      margin-bottom: variables.$spacing-lg;
+      box-shadow: variables.$shadow-sm;
+      display: flex;
+      flex-wrap: wrap;
+      gap: variables.$spacing-md;
+      align-items: center;
+
+      .search-filter {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-sm;
+        flex: 1;
+        min-width: 250px;
+
+        input {
+          flex: 1;
+          padding: variables.$spacing-sm variables.$spacing-md;
+          border: 1px solid variables.$color-gray-300;
+          border-radius: variables.$border-radius-md;
+          font-size: 0.875rem;
+          transition: border-color variables.$transition-fast;
+
+          &:focus {
+            outline: none;
+            border-color: variables.$color-primary;
+          }
+        }
+      }
+
+      .type-filter {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-sm;
+
+        select {
+          padding: variables.$spacing-sm variables.$spacing-md;
+          border: 1px solid variables.$color-gray-300;
+          border-radius: variables.$border-radius-md;
+          font-size: 0.875rem;
+          background: variables.$color-white;
+          cursor: pointer;
+          transition: border-color variables.$transition-fast;
+
+          &:focus {
+            outline: none;
+            border-color: variables.$color-primary;
+          }
+        }
+      }
+
+      .download-button {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing-sm;
+        background: linear-gradient(135deg, variables.$color-primary, variables.$color-primary-dark);
+        color: variables.$color-white;
+        border: none;
+        border-radius: variables.$border-radius-md;
+        padding: variables.$spacing-md variables.$spacing-lg;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all variables.$transition-fast;
+        box-shadow: variables.$shadow-md;
+        min-width: 180px;
+        justify-content: center;
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-lg;
+          background: linear-gradient(135deg, variables.$color-primary-dark, variables.$color-primary);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        .loading-spinner {
+          width: 16px;
+          height: 16px;
+          border: 2px solid transparent;
+          border-top: 2px solid variables.$color-white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+
+    .transactions-section {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      box-shadow: variables.$shadow-sm;
+      overflow: hidden;
+
+      h2 {
+        color: variables.$color-gray-900;
+        font-size: 1.5rem;
+        margin: 0;
+        padding: variables.$spacing-lg;
+        border-bottom: 1px solid variables.$color-gray-200;
+        font-weight: 600;
+      }
+
+      .transactions-list {
+        .transaction-item {
+          display: flex;
+          align-items: center;
+          padding: variables.$spacing-md variables.$spacing-lg;
+          border-bottom: 1px solid variables.$color-gray-200;
+          transition: background-color variables.$transition-fast;
+
+          &:hover {
+            background-color: variables.$color-gray-100;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &.debit {
+            .transaction-icon {
+              background-color: rgba(variables.$color-error, 0.1);
+              color: variables.$color-error;
+            }
+
+            .amount {
+              color: variables.$color-error;
+            }
+          }
+
+          &.credit {
+            .transaction-icon {
+              background-color: rgba(variables.$color-success, 0.1);
+              color: variables.$color-success;
+            }
+
+            .amount {
+              color: variables.$color-success;
+            }
+          }
+
+          .transaction-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: variables.$border-radius-full;
+            margin-right: variables.$spacing-md;
+          }
+
+          .transaction-details {
+            flex: 1;
+
+            .transaction-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              margin-bottom: variables.$spacing-xs;
+
+              h4 {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: variables.$color-gray-800;
+                margin: 0;
+              }
+
+              .amount {
+                font-weight: 600;
+                font-size: 0.875rem;
+              }
+            }
+
+            .transaction-date {
+              display: flex;
+              align-items: center;
+              color: variables.$color-gray-600;
+              font-size: 0.75rem;
+
+              svg {
+                margin-right: variables.$spacing-xs;
+              }
+            }
+          }
+        }
+      }
+
+      .no-transactions {
+        padding: variables.$spacing-xl;
+        text-align: center;
+        color: variables.$color-gray-600;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

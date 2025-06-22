@@ -1,0 +1,290 @@
+@use '../base/variables';
+
+.transfer-history-page {
+  min-height: 100vh;
+  background-color: variables.$color-gray-100;
+
+  .transfer-history-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .history-header {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      h1 {
+        font-size: 2rem;
+        color: variables.$color-gray-900;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: variables.$color-gray-600;
+        font-size: 1.1rem;
+      }
+    }
+
+    .filters-section {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 1.5rem;
+      box-shadow: variables.$shadow-sm;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: variables.$spacing-md;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-group {
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          color: variables.$color-gray-700;
+          font-weight: 600;
+          font-size: 0.875rem;
+        }
+
+        select {
+          width: 100%;
+          padding: variables.$spacing-md;
+          border: 2px solid variables.$color-gray-200;
+          border-radius: variables.$border-radius-md;
+          font-size: 1rem;
+          transition: all variables.$transition-fast;
+          box-sizing: border-box;
+
+          &:focus {
+            outline: none;
+            border-color: variables.$color-primary;
+            box-shadow: 0 0 0 3px rgba(9, 80, 166, 0.1);
+          }
+        }
+      }
+    }
+
+    .transactions-list {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      box-shadow: variables.$shadow-sm;
+      overflow: hidden;
+
+      .transaction-item {
+        display: flex;
+        align-items: flex-start;
+        gap: variables.$spacing-md;
+        padding: variables.$spacing-lg;
+        border-bottom: 1px solid variables.$color-gray-200;
+        transition: background-color variables.$transition-fast;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: variables.$color-gray-500;
+        }
+
+        &.sent {
+          .transaction-icon {
+            background: #fee2e2;
+            color: #dc2626;
+          }
+
+          .amount {
+            color: #dc2626;
+          }
+        }
+
+        &.received {
+          .transaction-icon {
+            background: #d1fae5;
+            color: #059669;
+          }
+
+          .amount {
+            color: #059669;
+          }
+        }
+
+        .transaction-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .transaction-details {
+          flex: 1;
+          min-width: 0;
+
+          .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: variables.$spacing-sm;
+
+            h4 {
+              color: variables.$color-gray-900;
+              font-size: 1rem;
+              font-weight: 600;
+              margin: 0;
+              flex: 1;
+              margin-right: variables.$spacing-sm;
+            }
+
+            .amount {
+              font-weight: 700;
+              font-size: 1.1rem;
+              white-space: nowrap;
+            }
+          }
+
+          .transaction-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: variables.$spacing-md;
+            margin-bottom: variables.$spacing-sm;
+
+            .info-item {
+              display: flex;
+              align-items: center;
+              gap: variables.$spacing-xs;
+              color: variables.$color-gray-600;
+              font-size: 0.875rem;
+
+              svg {
+                color: variables.$color-gray-400;
+              }
+
+              .account-alias {
+                background: variables.$color-gray-100;
+                padding: 0.25rem 0.5rem;
+                border-radius: variables.$border-radius-sm;
+                font-family: monospace;
+                font-size: 0.75rem;
+              }
+            }
+          }
+
+          .transaction-description {
+            color: variables.$color-gray-600;
+            font-size: 0.875rem;
+            font-style: italic;
+          }
+        }
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+
+        .empty-icon {
+          color: variables.$color-gray-400;
+          margin-bottom: variables.$spacing-lg;
+        }
+
+        h3 {
+          color: variables.$color-gray-900;
+          margin-bottom: variables.$spacing-sm;
+          font-size: 1.25rem;
+        }
+
+        p {
+          color: variables.$color-gray-600;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .statistics-section {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-lg;
+      padding: 2rem;
+      box-shadow: variables.$shadow-sm;
+      margin-top: 2rem;
+
+      h3 {
+        color: variables.$color-gray-900;
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: variables.$spacing-md;
+
+        .stat-card {
+          text-align: center;
+          padding: variables.$spacing-lg;
+          background: variables.$color-gray-500;
+          border-radius: variables.$border-radius-md;
+          border: 1px solid variables.$color-gray-200;
+
+          h4 {
+            color: variables.$color-gray-900;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            color: variables.$color-gray-600;
+            font-size: 0.875rem;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .transfer-history-page {
+    .transfer-history-content {
+      padding: 1rem;
+
+      .history-header {
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+
+      .transaction-item {
+        padding: variables.$spacing-md;
+
+        .transaction-details {
+          .transaction-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: variables.$spacing-sm;
+
+            h4 {
+              margin-right: 0;
+            }
+          }
+
+          .transaction-info {
+            flex-direction: column;
+            gap: variables.$spacing-sm;
+          }
+        }
+      }
+
+      .statistics-section {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+} 

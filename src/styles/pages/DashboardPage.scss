@@ -21,7 +21,87 @@
     
     p {
       color: variables.$color-gray-600;
-      margin-bottom: 0;
+      margin-bottom: variables.$spacing-sm;
+    }
+
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: variables.$spacing-xs;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: variables.$spacing-xs variables.$spacing-sm;
+      border-radius: variables.$border-radius-sm;
+      font-size: 0.875rem;
+      font-weight: 600;
+      animation: fadeIn variables.$transition-default forwards;
+      animation-delay: 200ms;
+    }
+  }
+
+  .admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: variables.$spacing-md;
+    padding: 0 variables.$spacing-md variables.$spacing-md;
+    animation: fadeIn variables.$transition-default forwards;
+    animation-delay: 100ms;
+
+    .stat-card {
+      background: variables.$color-white;
+      border-radius: variables.$border-radius-md;
+      padding: variables.$spacing-md;
+      display: flex;
+      align-items: center;
+      gap: variables.$spacing-md;
+      box-shadow: variables.$shadow-sm;
+      transition: all variables.$transition-fast;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: variables.$shadow-md;
+      }
+
+      svg {
+        color: variables.$color-primary;
+        flex-shrink: 0;
+      }
+
+      .stat-info {
+        h3 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: variables.$color-gray-900;
+          margin: 0 0 variables.$spacing-xs 0;
+        }
+
+        p {
+          color: variables.$color-gray-600;
+          margin: 0;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+      }
+
+      &.admin-action {
+        button {
+          background: none;
+          border: none;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: variables.$spacing-md;
+          cursor: pointer;
+          padding: 0;
+          color: inherit;
+
+          &:hover {
+            .stat-info h3 {
+              color: variables.$color-primary;
+            }
+          }
+        }
+      }
     }
   }
   
@@ -79,13 +159,139 @@
     }
   }
   
-  .dashboard-summary {
+  .dashboard-actions {
     padding: variables.$spacing-md;
     margin-top: auto;
-    
-    .summary-button {
-      animation: fadeIn variables.$transition-default forwards;
-      animation-delay: 300ms;
+
+    .action-buttons {
+      display: flex;
+      gap: variables.$spacing-md;
+      flex-direction: column;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
+
+      .action-button {
+        flex: 1;
+        background: variables.$color-white;
+        border: 2px solid variables.$color-gray-200;
+        border-radius: variables.$border-radius-md;
+        padding: variables.$spacing-md;
+        cursor: pointer;
+        transition: all variables.$transition-fast;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: variables.$shadow-md;
+        }
+
+        .action-button-content {
+          display: flex;
+          align-items: center;
+          gap: variables.$spacing-sm;
+
+          span {
+            font-weight: 600;
+            color: variables.$color-gray-900;
+          }
+        }
+
+        svg:last-child {
+          color: variables.$color-gray-400;
+          transition: transform variables.$transition-fast;
+        }
+
+        &:hover svg:last-child {
+          transform: translateX(4px);
+        }
+
+        &.transfer {
+          border-color: #10b981;
+          background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+
+          &:hover {
+            border-color: #059669;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          }
+
+          .action-button-content svg {
+            color: #10b981;
+          }
+        }
+
+        &.history {
+          border-color: #8b5cf6;
+          background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+
+          &:hover {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+          }
+
+          .action-button-content svg {
+            color: #8b5cf6;
+          }
+        }
+
+        &.card-summary {
+          border-color: #f59e0b;
+          background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+
+          &:hover {
+            border-color: #d97706;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          }
+
+          .action-button-content svg {
+            color: #f59e0b;
+          }
+        }
+
+        &.summary {
+          border-color: variables.$color-primary;
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+
+          &:hover {
+            border-color: variables.$color-primary-dark;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+          }
+
+          .action-button-content svg {
+            color: variables.$color-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .dashboard-page {
+    .admin-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: variables.$spacing-sm;
+      padding: 0 variables.$spacing-sm variables.$spacing-sm;
+
+      .stat-card {
+        padding: variables.$spacing-sm;
+
+        .stat-info {
+          h3 {
+            font-size: 1.25rem;
+          }
+
+          p {
+            font-size: 0.75rem;
+          }
+        }
+      }
     }
   }
 }

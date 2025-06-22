@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { CreditCard, Lock, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/pages/LoginPage.scss';
 
 const LoginPage: React.FC = () => {
@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
       <div className="login-container">
         <div className="login-logo">
           <CreditCard size={40} />
-          <h1>FedeApp</h1>
+          <h1>HomeBanking</h1>
         </div>
         
         <form className="login-form" onSubmit={handleSubmit}>
@@ -97,8 +97,19 @@ const LoginPage: React.FC = () => {
           </div>
         </form>
         
+        <div className="login-footer">
+          <p>
+            ¿No tienes una cuenta?{' '}
+            <Link to="/register" className="register-link">
+              Regístrate aquí
+            </Link>
+          </p>
+        </div>
+        
         <div className="login-demo">
-          <p>Para prueba: Usuario - <strong>usuario1</strong>, Contraseña - <strong>password123</strong></p>
+          <p><strong>Usuarios de prueba:</strong></p>
+          <p>Admin: <strong>farana</strong> / <strong>1234</strong></p>
+          <p>Usuario: <strong>mmiranda</strong> / <strong>1234</strong></p>
         </div>
       </div>
     </div>
